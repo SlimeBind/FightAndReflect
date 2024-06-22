@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Omega RPG game ™</title>
+</head>
+<body>
+<h1> [insert irl name]'s rpg game ™ </h1>
+<script>
+
+
+const enemy = [
+	"bee",
+	"rat",
+	"rock",
+	"alien"
+] ;
+
+var randomIndex = Math.floor(Math.random() * enemy.length); 
+var randomElement = enemy[randomIndex];
+
+const img = new Image(100, 100);
+
+if (randomElement == enemy[0]) {
+//The Bee Enemy's stats
+var name = ("Bee")
+var health = (12)
+var speed = (3)
+var strength = (1)
+var info = ("Is quick, but extremely weak")
+img.src = "https://upload.wikimedia.org/wikipedia/commons/4/4d/Apis_mellifera_Western_honey_bee.jpg";
+ 
+} else if (randomElement == enemy[1]) {
+//The Rat Enemy's stats
+var name = ("Rat")
+var health = (16)
+var speed = (2)
+var strength = (2)
+var info = ("Nothing Special")
+img.src = "https://static.wikia.nocookie.net/jerma-lore/images/4/42/Rat-transparent.png/revision/latest?cb=20201105232234"
+ 
+} else if (randomElement == enemy[2]) {
+//The Rock Enemy's stats
+var name = ("Rock")
+var health = (24)
+var speed = (1)
+var strength = (1)
+var info = ("Barely a threat, extremely hard to take down")
+img.src = "https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/Limestone-060-RD010-C-SH_by22j3.jpg";
+
+} else if (randomElement == enemy[3]) {
+//The Alien Enemy's stats
+var name = ("Alien")
+var health = (6)
+var speed = (3)
+var strength = (3)
+var info = ("Strong but extremely weak")
+img.src = "https://assets.sellers.loblaw.ca/products/all/1253/393568_8969691865_1.jpg?size=480";
+};
+
+document.write("A wild " + name + " has approached!" + "<br>");
+document.body.appendChild(img);
+document.write("<br>" + "HP:" + health + " SPD:" + speed + " DMG:" + strength + "<br>" + " Info: " + info + "<br>");
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>RPG Game</title>
+</head>
+<body>
+<body bgcolor="#ffd1d0">
+<BODY LINK="#a700ff" VLINK="#a700ff">
+<h2> The Enemy </h2>
+<script>
+
+const img1 = new Image(100, 100);
+const img2 = new Image(100, 100);
+
+img2.src = "player.png";
+
+var enemy = {name: "Rat",
+			health: 15,
+			speed: 2,
+			strength: 2,
+			info: "Just a rat, nothing special"			
+			};
+img1.src = "rat.png";
+ 
+document.body.appendChild(img1);
+document.write("<br> Name: " + enemy.name + "<br> Health[<FONT COLOR='#ff0000'>▊▊▊▊</FONT><FONT COLOR='#191a19'>▊</FONT>] <br> HP:" + enemy.health + " SPD:" + enemy.speed + " DMG:" + enemy.strength + "<br> Info: " + enemy.info + "<br> <br> <br>");	
+document.write(enemy.name + " did a STRONG <b>6 Damage</b> to Player! <br>" + "<i>The Player is now slower!</i> <br>" + "<i>The Player is now poisoned!</i> <br>" + "Player dealt <b>1 Damage</b> to " + enemy.name + "<br>");
+</script>
+<a href=11100.html><br>Fight</a> 
+<a href=11101.html>Parry</a> 
+<a href=flee.html>Flee</a> 
+<h2> The Player </h2>
+<script>
+document.body.appendChild(img2);
+</script>
+<p>Name: Player <br> Health[<FONT COLOR='#0eff00'>▊▊▊</FONT><FONT COLOR='#191a19'>▊▊</FONT>] <i>(Poisoned)</i> <br> HP:10 SPD:1 DMG:3 <br> Info: It's you!</p>
+</body>
+
+</html>

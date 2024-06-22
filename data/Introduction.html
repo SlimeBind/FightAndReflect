@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>The Project Tutorial</title>
+<style>
+.main {
+  margin-left: 35px;
+  max-width:1400px;
+  background-color: white;  
+  border: 5px outset lightgrey;
+ }
+#back {
+  background-image: linear-gradient(to bottom right, lightblue, #8c94d4);
+}
+</style>
+</head>
+<div id="back">
+<center>
+<body bgcolor="lightblue">
+<h1><FONT COLOR=red>Fight </font> & <FONT COLOR=green> Reflect</font></h1>
+<div class="main">
+<p>The game is a simple numbers game, if the enemy's health reaches 0 <font color=lime>you win</font>, if the player's health reaches 0 <font color=red>you lose</font>.</p>
+<img src="tutorial1.png" alt="What each thing ingame is">
+<p> The enemies has mutliple informations shown to the player during the fight to help them identify and make fights alot easier to understand, for example:<br>-<font color="#a91207">Enemy's Appearence</font>: Helps the player identify and visualize who they are fighting <br>-<font color="#a91207">Enemy's Name</font>: Shows the name of said enemy <br> -<font color="#a91207">Enemy's Health Bar</font>: A Bar that decreases depending on the enemy's health <br> -<font color="#a91207">Enemy's Stats</font>: Shows a numbered amount of Health, Speed and Damage that the enemy has<br> -<font color="#a91207">Enemy's Info</font>: A simple paragraph that shows an information about them<br><br> The Player does too have informations about them too, them being: <br>-<font color="#1703bc">Player's Appearence</font>: A simple image of the player as it looks awful without one <br> -<font color="#1703bc">Player's Name</font>: Shows the name of the player which they would have inputed at the start of the game <br> -<font color="#1703bc">Player's Health bar</font>: A bar that decreases depending on the player's health, with an extra yellow bar that shows if the player is at max health or not<br>-<font color="#1703bc">Player's Stats</font>: Shows a numbered amount of Health, Speed and Damage that the player has <br> -<font color="#1703bc">Player's Info</font>: A simple information about you <br><br> Now, the game part. The <font color="#00b636">Battle Info</font> plays a huge part of the game as it tells you what happened during your move, pay close attention to it as sometimes it'll display something important.<br><br>It isn't a game if you can't even play it, so the <font color="#00b636">Battle Options</font> are a set of 3 buttons being "<font color="red">Fight</font>", "<font color="orange">Heal</font>" and "<font color="green">Parry</font>" with each having a specific use for them being:<br>--<font color="red">Fight</font>: Use this to deal damage to the enemy, depending on your Damage Stats (labeled "DMG"), you'll deal the exact amount of Damage to their Health (labeled "HP"), Though depending on your speed stats, if its equals or higher than the enemy's then you'll attack first.<br>--<font color="#0a8a17">Heal</font>: Just like how you can hurt the enemies, they can hurt you too, so when you're low on health use it immediately as it Heals 50% of your health. However, It'll only heal 75% (3/4) of the time and it'll always play after the enemy attacks no matter how fast you are.<br>--<font color="#9fff00">Parry</font>: The gameplay loop of "Fight, Fight, Heal, Repeat" isn't fun, so there is a mechanic where there is a chance that the enemy will charge up an attack that will deal double the damage and prevent any move you do from happening. So use the parry when the enemy is charging up the attack and you'll Parry/Reflect the damage back at the enemy with a bonus Heal which can overheal if it goes past your Health Cap. However, use it on a normal attack and your Parry will fail.<br><br><b>Now that you know the gameplay basics, i'll tell you how the game works and progresses;</b><br>Your goal is to defeat multiple enemy and reach the end as i mentioned at the start. There are 6 enemies that you'll have to fight with one of them being a boss at the end, Both are completely random as there are 10 different enemies and 3 different bosses that'll be picked to fight against you with each being either <font color="#1b658e"><i>Easy</font></i> and <font color="#1b852b"><i>Simple</font></i> or <font color="#745100"><b>Hard</font></b> and <font color="#770002"><b>RNG based</font></b> (rely on luck).<br> That way the game can't be experienced completely on a single sitting and adds a bit of replayabilty on it.<br>By the way, once you beat an enemy you'll gain half of your health back..<br></p>
+<a href="../ProjectV2.html"><img src="attention.png" alt="Click the link above to start playing"></a>
+</div>
+<h3><br><br><br>Development History (Bonus)</h3>
+<p><i>Incase you noticed</i>, the file name of the game is called <b>"ProjectV2"</b>. That's because there were previous version i have made that are either just for testing or had a terrible way for the game to function or is just an earlier version that lacks current features (Some include scrapped enemies).<br>If you are interested on seeing them, click the button below to see each one of them.<br></p>
+<script>
+document.write('<button id="button" onclick="buttonaction()">Show Versions</button>')
+function buttonaction() {
+var button1 = document.getElementById("button")
+button1.innerHTML = "<b>-Name:</b> Random Enemy Test<br><b>-Link:</b> <a href='old versions/The Project V0.1.html'>The Project V0.1</a><br><b>-Description:</b> A simple code where when you refresh the page, a new enemy with stats appears. However the enemy's appearence requires internet as they are taken with a web link. (The Alien soon became The Robot)<br><br><b>-Name:</b> Hyperlink RPG pain game<br><b>-Link:</b> <a href='old versions/The Project BETA.html'>The Project BETA</a><br><b>-Description:</b> A Very unfinished version of the rpg running on hyperlinks before learning functions, each move used to be made manually which i realized will take me way too long. The only stuff functional are: when you flee, when you lose, and a few actions that only work when fighting Rat (keep reloading until you get him)<br><br><b>-Name:</b> Combat Test<br><b>-Link:</b><a href='old versions/ProjectV1.html'> ProjectV1</a><br><b>-Description:</b> The closest thing to the current version i made before adding bosses, more enemies, replayabily and parries. When making this version, i had an idea of making the game infinite which can be hinted with the Levels and EXP but ended up scrapping it as i felt i was stepping into a place far from my knoweledge."
+}
+document.write("<br><br>Made by [insert irl name]")
+</script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>RPG Game</title>
+</head>
+<body>
+<body bgcolor="#e9e8e9">
+<BODY LINK="#a700ff" VLINK="#a700ff">
+<h2> The Enemy </h2>
+<script>
+
+
+const enemylist = [
+	"bee",
+	"rat",
+	"rock",
+	"robot"
+] ;
+
+var randomIndex = Math.floor(Math.random() * enemylist.length); 
+var randomElement = enemylist[randomIndex];
+
+const img1 = new Image(100, 100);
+const img2 = new Image(100, 100);
+
+img2.src = "player.png";
+
+if (randomElement == enemylist[0]) {
+//The Bee Enemy's stats
+var enemy = {name: "Bee",
+			health: 12,
+			speed: 3,
+			strength: 1,
+			info: "Is quick, but extremely weak"
+			};
+img1.src = "bee.png";
+ 
+} else if (randomElement == enemylist[1]) {
+//The Rat Enemy's stats
+var enemy = {name: "Rat",
+			health: 16,
+			speed: 2,
+			strength: 2,
+			info: "Just a rat, nothing special"			
+			};
+img1.src = "rat.png";
+ 
+} else if (randomElement == enemylist[2]) {
+//The Rock Enemy's stats
+var enemy = {name: "Rock",
+			health: 24,
+			speed: 1,
+			strength: 1,
+			info: "Barely a threat, extremely hard to taken down"			
+			}
+img1.src = "rock.png";
+
+} else if (randomElement == enemylist[3]) {
+//The Robot Enemy's stats
+var enemy = {name: "Robot",
+			health: 6,
+			speed: 3,
+			strength: 3,
+			info: "Strong but easily destructible"			
+			}
+img1.src = "robot.png";
+};
+
+document.body.appendChild(img1);
+document.write("<br> Name: " + enemy.name + "<br> Health[<FONT COLOR='#ff0000'>▊▊▊▊▊</FONT>]<br> HP:" + enemy.health + " SPD:" + enemy.speed + " DMG:" + enemy.strength + "<br> Info: " + enemy.info + "<br> <br> <br>");	
+document.write("A wild " + enemy.name + " has approached!" + "<br>");
+if (randomElement == enemylist[0]) {
+document.write("<a href=00.html><br>Fight</a> <a href=11.html>Parry</a> <a href=flee.html>Flee</a>")
+} else if (randomElement == enemylist[1]) {
+document.write("<a href=10.html><br>Fight</a> <a href=11.html>Parry</a> <a href=flee.html>Flee</a>")
+} else if (randomElement == enemylist[2]) {
+document.write("<a href=20.html><br>Fight</a> <a href=11.html>Parry</a> <a href=flee.html>Flee</a>")
+} else if (randomElement == enemylist[3]) {
+document.write("<a href=30.html><br>Fight</a> <a href=11.html>Parry</a> <a href=flee.html>Flee</a>")
+}
+</script>
+<h2> The Player </h2>
+<script>
+document.body.appendChild(img2);
+</script>
+<p>Name: Player <br> Health[<FONT COLOR='#ff0000'>▊▊▊▊▊</FONT>] <br> HP:20 SPD:2 DMG:3 <br> Info: It's you!</p>
+</body>
+
+</html>

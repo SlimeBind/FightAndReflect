@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Fight & Reflect</title>
+<style>
+#back {
+  height: 700px;
+  padding: 10px 0;
+  background-image: linear-gradient(#ff7c7d, #a2a2ff);
+}
+</style>
+</head>
+<div id="back">
+<center>
+<body bgcolor="white">
+<h2> The Enemy </h2>
+<script>
+var enemy
+var playeraction
+var ptemp
+var etemp
+var stronk = false
+
+//list of enemies
+const enemylist = [
+	"bee",
+	"rat",
+	"rock",
+	"robot",
+	"clone",
+	"knight",
+	"zombie",
+	"spirit",
+	"bread",
+	"lawyer"
+] ;
+
+const bosslist = [
+	"grat",
+	"hknight",
+	"nightmare"
+];
+
+//the player
+const promptname = prompt("What is your name?")
+
+var player = {name: promptname,
+			health: 12,
+			healthcap: 12,
+			bar: "<FONT COLOR='#ff0000'>▊▊▊▊</FONT><FONT COLOR='#ffe100'>▊</FONT>",
+			speed: 2,
+			strength: 3	,
+			info: "It's you!",
+			level: 5
+			};
+
+
+//Randomization System for enemies
+var randomInfo = Math.floor(Math.random() * enemylist.length); 
+var randomElement = enemylist[randomInfo];
+var randomInfo1 = Math.floor(Math.random() * enemylist.length); 
+var randomElement1 = enemylist[randomInfo1];
+var randomInfo2 = Math.floor(Math.random() * enemylist.length); 
+var randomElement2 = enemylist[randomInfo2];
+var randomInfo3 = Math.floor(Math.random() * enemylist.length); 
+var randomElement3 = enemylist[randomInfo3];
+var randomInfo4 = Math.floor(Math.random() * enemylist.length); 
+var randomElement4 = enemylist[randomInfo4];
+
+trandomElement = randomElement
+
+function nextenemy() {
+if (trandomElement == enemylist[0]) {
+enemy = {name: "Bee",
+			health: 16,
+			healthcap: 16,
+			bar: "<FONT COLOR='#ff0000'>▊▊▊▊</FONT>",
+			speed: 3,
+			strength: 1,
+			info: "Is quick, but extremely weak",
+			img: "data/bee.png",
+			imgd: "data/beedead.png"
+			};
+
+} else if (trandomElement == enemylist[1]) {
+enemy = {name: "Rat",
+			health: 20,
+			healthcap: 20,
+			bar: "<FONT COLOR='#ff0000'>▊▊▊▊</FONT>",
+			speed: 2,
+			strength: 2,
+			info: "Just a rat, nothing special",
+			img: "data/rat.png",
+			imgd: "data/ratdead.png"
+			};
+ 
+} else if (trandomElement == enemylist[2]) {
+//The Rock Enemy's stats
+enemy = {name: "Moyai",
+			health: 30,
+			healthcap: 30,
+			bar: "<FONT COLOR='#ff0000'>▊▊▊▊</FONT>",
+			speed: 1,
+			strength: 2,
+			info: "Barely a threat, extremely hard to taken down",
+			img: "data/moyai.png",
+			imgd: "data/moyaidead.png"
+			}
+
+} else if (trandomElement == enemylist[3]) {
+//The Robot Enemy's stats
+enemy = {name: "Robot",
+			health: 14,
+			healthcap: 14,
+			bar: "<FONT COLOR='#ff0000'>▊▊▊▊</FONT>",
+			speed: 3,
+			strength: 3,
+			info: "Strong but easily destructible",
+			img: "data/robot.png",
+			imgd: "data/robotdead.png"
+			}
+			
+} else if (trandomElement == enemylist[4]) {
+//The Clone Enemy's stats
+enemy = {name: player.name + "?",
+			health: player.health,
+			healthcap: player.healthcap,
+			bar: player.bar,
+			speed: player.speed,
+			strength: player.strength,
+			info: "It's you?",
+			img: "data/clone.png",
+			imgd: "data/clonedead.png"
+			}
+} else if (trandomElement == enemylist[5]) {
+//The Knight Enemy's stats
+enemy = {name: "Knight",
+			health: 24,
+			healthcap: 24,
+			bar: "<FONT COLOR='#ff0000'>▊▊▊▊</FONT>",
+			speed: 2,
+			strength: 2,
+			info: "A Knight wielding a sharp shovel",
+			img: "data/knight.png",
+			imgd: "data/knightdead.png"
+			}
+} else if (trandomElement == enemylist[6]) {
+//The Zombie Enemy's stats
+enemy = {name: "Zombie",
+			health: 18,
+			healthcap: 18,
+			bar: "<FONT COLOR='#ff0000'>▊▊▊▊</FONT>",
+			speed: 1,
+			strength: 2,
+			info: "The thing on its head is controlling it",
+			img: "data/zombie.png",
+			imgd: "data/zombiedead.png"
+			}
+} else if (trandomElement == enemylist[7]) {
+//The Spirit Enemy's stats
+enemy = {name: "Lost Spirit",
+			health: 6,
+			healthcap: 6,
+			bar: "<FONT COLOR='#ff0000'>▊▊▊▊</FONT>",
+			speed: 3,
+			strength: 4,
+			info: "Insanely strong, though insanely weak too",
+			img: "data/spirit.png",
+			imgd: "data/spiritdead.png"
+			}
+} else if (trandomElement == enemylist[8]) {
+//The Bread Enemy's stats
+enemy = {name: "Bread Monster",
+			health: 16,
+			healthcap: 16,
+			bar: "<FONT COLOR='#ff0000'>▊▊▊▊</FONT>",
+			speed: 1,
+			strength: 3,
+			info: "The bread turned into a monster after being teleported multiple times",
+			img: "data/bread.png",
+			imgd: "data/breaddead.png"
+			}
+} else if (trandomElement == enemylist[9]) {
+//The Lawyer Enemy's stats
+enemy = {name: "Lawyer",
+			health: 15,
+			healthcap: 15,
+			bar: "<FONT COLOR='#ff0000'>▊▊▊▊</FONT>",
+			speed: 4,
+			strength: 2,
+			info: "Graduated law school just to sue you out of existance",
+			img: "data/lawyer.png",
+			imgd: "data/lawyerdead.png"
+			}
+}
+}
+
+nextenemy()
+
+//The Bosses generation
+var randomInfoB = Math.floor(Math.random() * bosslist.length); 
+var randomElementB = bosslist[randomInfoB];
+
+if (randomElementB == bosslist[0]) {
+//The Rat Boss's stats
+var boss = {name: "Giant Rat",
+			health: 50,
+			healthcap: 50,
+			bar: "<FONT COLOR='#ff0000'>▊▊▊▊</FONT>",
+			speed: 1,
+			strength: 2,
+			info: "He makes up all the rules",
+			img: "data/grat.png",
+			imgd: "data/gratdead.png",
+			boss: true
+			}
+} else if (randomElementB == bosslist[1]) {
+//The Knight Boss's stats
+var boss = {name: "Holy Knight",
+			health: 32,
+			healthcap: 32,
+			bar: "<FONT COLOR='#ffe100'>▊▊▊▊</FONT>",
+			speed: 2,
+			strength: 3,
+			info: "Follower of god",
+			img: "data/hknight.png",
+			imgd: "data/hknightdead.png",
+			boss: true
+			}
+} else if (randomElementB == bosslist[2]) {
+//The Nightmare Boss's stats
+var boss = {name: "Nightmare",
+			health: 26,
+			healthcap: 26,
+			bar: "<FONT COLOR='#7d00c1'>▊▊▊▊</FONT>",
+			speed: 3,
+			strength: 4,
+			info: "Creature made from Fear and insanity",
+			img: "data/nightmare.png",
+			imgd: "data/nightmaredead.png",
+			boss: true
+			}			
+}
+
+document.write("<img src='" + enemy.img + "' width='100' height='100' id='eimage'><br><p id='estatinfo'>Name: " + enemy.name + "<br> Health[" +  enemy.bar  + "]<br> HP:" + enemy.health + " SPD:" + enemy.speed + " DMG:" + enemy.strength + "<br> Info: " + enemy.info + "<br> <br></p>");	
+document.write("<p id='battleinfo' style='background-color:white'>A wild " + enemy.name + " has approached!" + "<br><p>");
+
+//removes the buttons
+function removecontrol() {
+		
+		var button1 = document.getElementById("b1")
+		var button2 = document.getElementById("b2")
+		var button3 = document.getElementById("b3")
+		button1.parentNode.removeChild(button1)
+		button2.parentNode.removeChild(button2)
+		button3.parentNode.removeChild(button3)
+		}
+
+//adds back the ability to attack
+function addcontrol() {
+		var button5 = document.getElementById("battleinfo")
+		button5.innerHTML = 'A wild ' + enemy.name + ' has approached!'
+		var button6 = document.getElementById("b6")
+		button6.innerHTML = '<button onclick="fight()" id="b1">Fight</button>' + '<button onclick="heal()" id="b2">Heal</button>' + '<button onclick="parry()" id="b3">Parry</button>'
+		healthbar()
+		statinfo()
+		document.getElementById("eimage").src = enemy.img;
+		}
+
+//Continue the game by placing next enemies
+function proceed() {
+		var button4 = document.getElementById("b4")
+		button4.parentNode.removeChild(button4)
+		player.health += player.healthcap/2
+		if (player.health >= player.healthcap) {
+		player.health = player.healthcap
+		}
+		if (player.level == 4) {
+		trandomElement = randomElement1
+		nextenemy()
+		} else if (player.level == 3) {
+		trandomElement = randomElement2
+		nextenemy()
+		} else if (player.level == 2) {
+		trandomElement = randomElement3
+		nextenemy()
+		} else if (player.level == 1) {
+		trandomElement = randomElement4
+		nextenemy()
+		} else if (player.level <= 0) {
+		enemy = boss
+		}
+		addcontrol()
+		}
+
+//To update the bar
+function healthbar() {
+		ptemp = player.health/player.healthcap*100
+		
+		if (ptemp <= 0) {
+		player.bar = "<FONT COLOR='#191a19'>▊▊▊▊</FONT><FONT COLOR='#404000'>▊</FONT>"
+		} else if (ptemp <= 25) {
+		player.bar = "<FONT COLOR='#ff0000'>▊</FONT><FONT COLOR='#191a19'>▊▊▊</FONT><FONT COLOR='#404000'>▊</FONT>"
+		} else if (ptemp <= 50) {
+		player.bar = "<FONT COLOR='#ff0000'>▊▊</FONT><FONT COLOR='#191a19'>▊▊</FONT><FONT COLOR='#404000'>▊</FONT>"
+		} else if (ptemp <= 75) {
+		player.bar = "<FONT COLOR='#ff0000'>▊▊▊</FONT><FONT COLOR='#191a19'>▊</FONT><FONT COLOR='#404000'>▊</FONT>"
+		} else if (ptemp <= 99) {
+		player.bar = "<FONT COLOR='#ff0000'>▊▊▊▊</FONT><FONT COLOR='#404000'>▊</FONT>"
+		} else {
+		player.bar = "<FONT COLOR='#ff0000'>▊▊▊▊</FONT><FONT COLOR='#ffe100'>▊</FONT>"
+		}
+		
+		etemp = enemy.health/enemy.healthcap*100
+
+		if (enemy.healthcap == player.healthcap) {
+			if (etemp <= 0) {
+			enemy.bar = "<FONT COLOR='#191a19'>▊▊▊▊</FONT><FONT COLOR='#404000'>▊</FONT>"
+			} else if (etemp <= 25) {
+			enemy.bar = "<FONT COLOR='#ff0000'>▊</FONT><FONT COLOR='#191a19'>▊▊▊</FONT><FONT COLOR='#404000'>▊</FONT>"
+			} else if (etemp <= 50) {
+			enemy.bar = "<FONT COLOR='#ff0000'>▊▊</FONT><FONT COLOR='#191a19'>▊▊</FONT><FONT COLOR='#404000'>▊</FONT>"
+			} else if (etemp <= 75) {
+			enemy.bar = "<FONT COLOR='#ff0000'>▊▊▊</FONT><FONT COLOR='#191a19'>▊</FONT><FONT COLOR='#404000'>▊</FONT>"
+			} else if (etemp <= 99) {
+			enemy.bar = "<FONT COLOR='#ff0000'>▊▊▊▊</FONT><FONT COLOR='#404000'>▊</FONT>"
+			} else {
+			enemy.bar = "<FONT COLOR='#ff0000'>▊▊▊▊</FONT><FONT COLOR='#ffe100'>▊</FONT>"
+			}
+		} else if (enemy.healthcap == 32) {
+			if (etemp <= 0) {
+			enemy.bar = "<FONT COLOR='#404000'>▊▊▊▊</FONT>"
+			} else if (etemp <= 25) {
+			enemy.bar = "<FONT COLOR='#ffe100'>▊</FONT><FONT COLOR='#404000'>▊▊▊</FONT>"
+			} else if (etemp <= 50) {
+			enemy.bar = "<FONT COLOR='#ffe100'>▊▊</FONT><FONT COLOR='#404000'>▊▊</FONT>"
+			} else if (etemp <= 75) {
+			enemy.bar = "<FONT COLOR='#ffe100'>▊▊▊</FONT><FONT COLOR='#404000'>▊</FONT>"
+			} else {
+			enemy.bar = "<FONT COLOR='#ffe100'>▊▊▊▊</FONT>"
+			}
+		} else if (enemy.healthcap == 26) {
+			if (etemp <= 0) {
+			enemy.bar = "<FONT COLOR='#1f002f'>▊▊▊▊</FONT>"
+			} else if (etemp <= 25) {
+			enemy.bar = "<FONT COLOR='#7d00c1'>▊</FONT><FONT COLOR='#1f002f'>▊▊▊</FONT>"
+			} else if (etemp <= 50) {
+			enemy.bar = "<FONT COLOR='#7d00c1'>▊▊</FONT><FONT COLOR='#1f002f'>▊▊</FONT>"
+			} else if (etemp <= 75) {
+			enemy.bar = "<FONT COLOR='#7d00c1'>▊▊▊</FONT><FONT COLOR='#1f002f'>▊</FONT>"
+			} else {
+			enemy.bar = "<FONT COLOR='#7d00c1'>▊▊▊▊</FONT>"
+			}
+		} else if (etemp <= 0) {
+			enemy.bar = "<FONT COLOR='#191a19'>▊▊▊▊</FONT>"
+			} else if (etemp <= 25) {
+			enemy.bar = "<FONT COLOR='#ff0000'>▊</FONT><FONT COLOR='#191a19'>▊▊▊</FONT>"
+			} else if (etemp <= 50) {
+			enemy.bar = "<FONT COLOR='#ff0000'>▊▊</FONT><FONT COLOR='#191a19'>▊▊</FONT>"
+			} else if (etemp <= 75) {
+			enemy.bar = "<FONT COLOR='#ff0000'>▊▊▊</FONT><FONT COLOR='#191a19'>▊</FONT>"
+			} else {
+			enemy.bar = "<FONT COLOR='#ff0000'>▊▊▊▊</FONT>"
+			} 
+		
+		}
+
+//To update the stats
+function statinfo() {
+		
+		if (enemy.health < 0) { enemy.health = 0 }
+		if (player.health < 0) { player.health = 0 }
+		
+		var act1 = document.getElementById("estatinfo");
+		act1.innerHTML = "Name: " + enemy.name + "<br> Health[" +  enemy.bar  + "]<br> HP:" + enemy.health + " SPD:" + enemy.speed + " DMG:" + enemy.strength + "<br> Info: " + enemy.info + "<br> <br>"
+		var act2 = document.getElementById("pstatinfo")
+		act2.innerHTML = "Name: " + player.name + "<br> Health[" + player.bar + "]<br> HP:" + player.health + " SPD:" + player.speed + " DMG:" + player.strength + "<br> Info: " + player.info
+		
+		}
+
+//Fight if player is faster than enemy
+function fightinfo0() {
+		var act = document.getElementById("battleinfo")
+		act.innerHTML = player.name + " dealt <b>" + player.strength + "</b> damage to " + enemy.name + ".<br>" + enemy.name + " dealt <b>" + enemy.strength + "</b> damage to " + player.name + "."
+		}
+
+//Fight if player is slower than enemy
+function fightinfo1() {
+		var act = document.getElementById("battleinfo")
+		act.innerHTML = enemy.name + " dealt <b>" + enemy.strength + "</b> damage to " + player.name + ".<br>" + player.name + " dealt <b>" + player.strength + "</b> damage to " + enemy.name + "."
+		}
+		
+//Fight if player is faster than enemy AND charging strong attack
+function fightinfo2() {
+		stronk = true
+		var act = document.getElementById("battleinfo")
+		act.innerHTML = player.name + " dealt <b>" + player.strength + "</b> damage to " + enemy.name + ".<br>" + enemy.name + " dealt <b>" + enemy.strength + "</b> damage to " + player.name + ". <br><i>" + enemy.name + " is charging a strong attack!</i>" 
+		}
+
+//Fight if player is slow than enemy AND charging strong attack		
+function fightinfo3() {
+		stronk = true
+		var act = document.getElementById("battleinfo")
+		act.innerHTML = enemy.name + " dealt <b>" + enemy.strength + "</b> damage to " + player.name + ".<br>" + player.name + " dealt <b>" + player.strength + "</b> damage to " + enemy.name + ". <br><i>" + enemy.name + " is charging a strong attack!</i>" 
+		}
+
+//Fight if player did not parry the attack
+function fightinfo4() {
+		stronk = false
+		var act = document.getElementById("battleinfo")
+		act.innerHTML = "<b><i>" + enemy.name + " did a STRONG attack to " + player.name + " dealing " + enemy.strength*2 + " damage !!!</b></i><br>" + player.name + " flinched."
+		}
+		
+//Fight if player did not parry the attack AND charging strong attack
+function fightinfo5() {
+		stronk = true
+		var act = document.getElementById("battleinfo")
+		act.innerHTML = "<b><i>" + enemy.name + " did a STRONG attack to " + player.name + " dealing " + enemy.strength*2 + " damage !!!</b></i><br>" + player.name + " flinched.<br><i>" + enemy.name + " is charging another strong attack!</i>"
+		}
+		
+//player uses heal and works
+function healinfo0() {
+		var act = document.getElementById("battleinfo")
+		act.innerHTML = enemy.name + " dealt <b>" + enemy.strength + "</b> damage to " + player.name + ".<br>" + player.name + " healed " + player.healthcap/1.5 + " HP."
+		}
+
+//player uses heal but fails
+function healinfo1() {
+		var act = document.getElementById("battleinfo")
+		act.innerHTML = enemy.name + " dealt <b>" + enemy.strength + "</b> damage to " + player.name + ".<br>" + player.name + " tried to heal but failed."
+		}
+
+//player uses heal and works but charging strong attack
+function healinfo2() {
+		stronk = true
+		var act = document.getElementById("battleinfo")
+		act.innerHTML = enemy.name + " dealt <b>" + enemy.strength + "</b> damage to " + player.name + ".<br>" + player.name + " healed " + player.healthcap/1.5 + " HP. <br><i>" + enemy.name + " is charging a strong attack!</i>" 
+		}
+//player uses heal but fails but charging strong attack
+function healinfo3() {
+		stronk = true
+		var act = document.getElementById("battleinfo")
+		act.innerHTML = enemy.name + " dealt <b>" + enemy.strength + "</b> damage to " + player.name + ".<br>" + player.name + " tried to heal but failed. <br><i>" + enemy.name + " is charging a strong attack!</i>" 
+		}
+		
+//player parries but does not Hit
+function parryinfo0() {
+		var act = document.getElementById("battleinfo")
+		act.innerHTML = player.name + " tried to parry the attack but fails.<br>" + enemy.name + " dealt <b>" + enemy.strength + "</b> damage to " + player.name + "."
+		}
+		
+//player parries and works
+function parryinfo1() {
+		stronk = false
+		var act = document.getElementById("battleinfo")
+		act.innerHTML = "<i><b>" + player.name + " parried " + enemy.name + "'s attack dealing " + enemy.strength*2 + " damage and earning " + enemy.strength + " HP!</i></b><br>" + enemy.name + " flinched."
+		}
+//player parries but does not Hit but charging attack
+function parryinfo2() {
+		stronk = true
+		var act = document.getElementById("battleinfo")
+		act.innerHTML = player.name + " tried to parry the attack but fails.<br>" + enemy.name + " dealt <b>" + enemy.strength + "</b> damage to " + player.name + ".<br><i>" + enemy.name + " is charging a strong attack!</i>" 
+		}
+//Win if player was faster
+function win0() {
+		if (enemy.boss == true) {
+		var act = document.getElementById("battleinfo")
+		act.innerHTML = player.name + " dealt <b>" + player.strength + "</b> damage to " + enemy.name + ".<br><b><i>" + enemy.name + " got defeated!!!</i><br>" + player.name + " has won the game!!!<br><button><a href='ProjectV2.html'>Play Again</a></button></b>"
+		document.getElementById("eimage").src = enemy.imgd;
+		player.health += enemy.strength
+		healthbar()
+		statinfo()
+		removecontrol()
+		alert(" Congratulations " + player.name + ", you have won the game!") 
+		} else {
+		stronk = false
+		player.level -= 1
+		var act = document.getElementById("battleinfo")
+		act.innerHTML = player.name + " dealt <b>" + player.strength + "</b> damage to " + enemy.name + ".<br><i>" + enemy.name + " got defeated!</i><br>" + player.name + " has " + player.level + " more enemies left! (" + player.level + "/5) <br><button onclick='proceed()' id='b4'>Proceed</button>"
+		document.getElementById("eimage").src = enemy.imgd;
+		healthbar()
+		statinfo()
+		removecontrol()
+		}
+		}
+		
+//Win if player was slower
+function win1() {
+		if (enemy.boss == true) {
+		var act = document.getElementById("battleinfo")
+		act.innerHTML = enemy.name + " dealt <b>" + enemy.strength + "</b> damage to " + player.name + ".<br>" + player.name + " dealt <b>" + player.strength + "</b> damage to " + enemy.name + ".<br><b><i>" + enemy.name + " got defeated!!!</i><br>" + player.name + " has won the game!!!</b><br><button><a href='ProjectV2.html'>Play Again</a></button>"
+		document.getElementById("eimage").src = enemy.imgd;
+		statinfo()
+		removecontrol()
+		alert(" Congratulations " + player.name + ", you have won the game!") 
+		} else {
+		stronk = false
+		healthbar()
+		player.level -= 1
+		var act = document.getElementById("battleinfo")
+		act.innerHTML = enemy.name + " dealt <b>" + enemy.strength + "</b> damage to " + player.name + ".<br>" + player.name + " dealt <b>" + player.strength + "</b> damage to " + enemy.name + ".<br><i>" + enemy.name + " got defeated!</i><br>" + player.name + " has " + player.level + " more enemies left! (" + player.level + "/5) <br> <button onclick='proceed()' id='b4'>Proceed</button>"
+		document.getElementById("eimage").src = enemy.imgd;
+		statinfo()
+		removecontrol()
+		}
+		}
+
+//Win if player parried the attack
+function win2() {
+		if (enemy.boss == true) {
+		var act = document.getElementById("battleinfo")
+		act.innerHTML = "<i><b>" + player.name + " parried " + enemy.name + "'s attack dealing " + enemy.strength*2 + " damage and earning " + enemy.strength + " HP!<br>" + enemy.name + " got defeated!!!</i><br>" + player.name + " has won the game!!!</b><br><button><a href='ProjectV2.html'>Play Again</a></button>"
+		document.getElementById("eimage").src = enemy.imgd;
+		statinfo()
+		removecontrol()
+		alert(" Congratulations " + player.name + ", you have won the game!") 
+		} else {
+		stronk = false
+		healthbar()
+		player.level -= 1
+		var act = document.getElementById("battleinfo")
+		act.innerHTML = "<i><b>" + player.name + " parried " + enemy.name + "'s attack dealing " + enemy.strength*2 + " damage and earning " + enemy.strength + " HP!</b><br>" + enemy.name + " got defeated!</i><br>" + player.name + " has " + player.level + " more enemies left! (" + player.level + "/5) <br> <button onclick='proceed()' id='b4'>Proceed</button>"
+		document.getElementById("eimage").src = enemy.imgd;
+		statinfo()
+		removecontrol()
+		}
+		}
+		
+//Lost if player was faster
+function lose0() {
+		healthbar()
+		var act = document.getElementById("battleinfo")
+		act.innerHTML = player.name + " dealt <b>" + player.strength + "</b> damage to " + enemy.name + ".<br>" + enemy.name + " dealt <b>" + enemy.strength + "</b> damage to " + player.name + ".<br><i>" + player.name + " reached 0 HP and fainted!</i><br><b>GAME OVER</b><br><button><a href='ProjectV2.html'>Try Again?</a></button>"
+		alert("You reached 0 Hit Points and lost!")
+		document.getElementById("pimage").src = "data/playerdead.png";
+		healthbar()
+		statinfo()
+		removecontrol()
+		}
+
+//Lost if player was slower
+function lose1() {
+		healthbar()
+		var act = document.getElementById("battleinfo")
+		act.innerHTML = enemy.name + " dealt <b>" + enemy.strength + "</b> damage to " + player.name + ".<br><i>" + player.name + " reached 0 HP and fainted!</i><br><b>GAME OVER</b><br><button><a href='ProjectV2.html'>Try Again?</a></button>"
+		alert("You reached 0 Hit Points and lost!")
+		document.getElementById("pimage").src = "data/playerdead.png";
+		statinfo()
+		removecontrol()
+		}
+		
+//Lost if player got killed by strong attack		
+function lose2() {
+		healthbar()
+		var act = document.getElementById("battleinfo")
+		act.innerHTML = "<b><i>" + enemy.name + " did a STRONG attack to " + player.name + " dealing " + enemy.strength*2 + " !!!</b></i><br><i>" + player.name + " reached 0 HP and fainted!</i><br><b>GAME OVER</b><br><button><a href='ProjectV2.html'>Try Again?</a></button>"
+		alert("You reached 0 Hit Points and lost!")
+		document.getElementById("pimage").src = "data/playerdead.png";
+		statinfo()
+		removecontrol()
+		}
+
+//Lost if player got killed with a fail parry
+function lose3() {
+		healthbar()
+		var act = document.getElementById("battleinfo")
+		act.innerHTML = player.name + " tried to parry the attack but fails.<br>" + enemy.name + " dealt <b>" + enemy.strength + "</b> damage to " + player.name + ".<br><i>" + player.name + " reached 0 HP and fainted!</i><br><b>GAME OVER</b><br><button><a href='ProjectV2.html'>Try Again?</a></button>"
+		alert("You reached 0 Hit Points and lost!")
+		document.getElementById("pimage").src = "data/playerdead.png";
+		healthbar()
+		statinfo()
+		removecontrol()
+		}
+		
+function fight() {
+		var attackchance = Math.random()
+			if (stronk == true) {
+				player.health -= enemy.strength*2 
+				if (player.health <= 0) {
+				lose2()
+				} else if (attackchance <= 0.15) {
+				healthbar(), statinfo(), fightinfo5()
+				} else {
+				healthbar(), statinfo(), fightinfo4()
+				}
+			} else {
+			enemy.health -= player.strength
+			player.health -= enemy.strength
+		
+			if (player.speed >= enemy.speed) {	
+				if (enemy.health <= 0) { win0() } 
+					else if (player.health <= 0) { lose0() }
+						else if (attackchance <= 0.15) {
+							healthbar(), statinfo(), fightinfo2() } else { healthbar(), statinfo(), fightinfo0() }
+			} else {
+				if (enemy.health <= 0) { win1() }
+					else if (player.health <= 0) { lose1() }
+						else if (attackchance <= 0.15) {healthbar(), statinfo(), fightinfo3() } else { healthbar(), statinfo(), fightinfo1()}
+		}
+		}
+		}
+
+function heal() {
+	var attackchance = Math.random()
+	if (stronk == true) {
+		player.health -= enemy.strength*2
+		if (player.health <= 0) {
+			lose2()
+			} else if (attackchance <= 0.15) {
+			healthbar(), statinfo(), fightinfo5()
+			} else {
+			healthbar(), statinfo(), fightinfo4()
+			}
+	
+	} else {
+		var healchance = Math.random()
+		player.health -= enemy.strength
+		if (healchance < 0.75) {
+			if (player.health <= 0) { lose1() }
+				else {
+					player.health += player.healthcap/1.5
+						if (player.health > player.healthcap) { player.health = player.healthcap }
+						if (attackchance <= 0.15) {
+						healthbar(), statinfo(), healinfo2()
+						} else {
+						healthbar(), statinfo(), healinfo0()
+						}
+					}
+			} else {
+			if (player.health <= 0) { lose1() } 
+			else {
+				if (attackchance <= 0.15) {
+					healthbar(), statinfo(), healinfo3()
+					} else {
+					healthbar()
+					healinfo1()
+					statinfo()
+					}
+				}
+			}
+		}
+	}
+function parry() {
+		var attackchance = Math.random()
+		if (stronk == true) {
+		enemy.health -= enemy.strength*2
+		player.health += enemy.strength
+			if (enemy.health <= 0) { win2() }
+			else { healthbar(), statinfo(), parryinfo1()}
+		} else {
+		player.health -= enemy.strength
+		if (player.health < 1) { lose3() }
+		else {
+			if (attackchance <= 0.15) {
+			healthbar(), statinfo(), parryinfo2()
+			} else { healthbar(), statinfo(), parryinfo0() }
+		}
+		}
+		}
+document.write('<button onclick="fight()" id="b1">Fight</button>' + '<button onclick="heal()" id="b2">Heal</button>' + '<button onclick="parry()" id="b3">Parry</button>' + '<p id="b6"></p>')
+document.write('<h2> The Player </h2>')
+document.write("<img src='data/player.png' width='100' height='100' id='pimage'><br><p id='pstatinfo'>Name: " + player.name + "<br> Health[" + player.bar + "] <br> HP:" + player.health + " SPD:" + player.speed + " DMG:" + player.strength + " <br> Info: " + player.info + "</p>");
+</script>
+</body>
+
+</html>

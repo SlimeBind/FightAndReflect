@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>RPG Game</title>
+</head>
+<body bgcolor="#e9e8e9">
+<h2> The Enemy </h2>
+<script>
+
+var playeraction
+var ptemp
+var etemp
+
+const enemylist = [
+	"bee",
+	"rat",
+	"rock",
+	"robot",
+	"clone"
+] ;
+
+const promptname = prompt("What is your name?")
+
+var player = {name: promptname,
+			health: 12,
+			healthcap: 12,
+			bar: "<FONT COLOR='#ff0000'>▊▊▊▊</FONT><FONT COLOR='#ffe100'>▊</FONT>",
+			speed: 2,
+			strength: 3,
+			info: "It's you!",
+			level: 5
+			};
+
+//Randomization System
+var randomInfo = Math.floor(Math.random() * enemylist.length); 
+var randomElement = enemylist[randomInfo];
+
+if (randomElement == enemylist[0]) {
+//The Bee Enemy's stats
+var enemy = {name: "Bee",
+			health: 16,
+			healthcap: 16,
+			bar: "<FONT COLOR='#ff0000'>▊▊▊▊</FONT>",
+			speed: 3,
+			strength: 1,
+			info: "Is quick, but extremely weak",
+			img: "data/bee.png",
+			imgd: "data/beedead.png"
+			};
+
+} else if (randomElement == enemylist[1]) {
+//The Rat Enemy's stats
+var enemy = {name: "Rat",
+			health: 20,
+			healthcap: 20,
+			bar: "<FONT COLOR='#ff0000'>▊▊▊▊</FONT>",
+			speed: 2,
+			strength: 2,
+			info: "Just a rat, nothing special",
+			img: "data/rat.png",
+			imgd: "data/ratdead.png"
+			};
+ 
+} else if (randomElement == enemylist[2]) {
+//The Rock Enemy's stats
+var enemy = {name: "Moyai",
+			health: 30,
+			healthcap: 30,
+			bar: "<FONT COLOR='#ff0000'>▊▊▊▊</FONT>",
+			speed: 1,
+			strength: 1,
+			info: "Barely a threat, extremely hard to taken down",
+			img: "data/moyai.png",
+			imgd: "data/moyaidead.png"
+			}
+
+} else if (randomElement == enemylist[3]) {
+//The Robot Enemy's stats
+var enemy = {name: "Robot",
+			health: 14,
+			healthcap: 14,
+			bar: "<FONT COLOR='#ff0000'>▊▊▊▊</FONT>",
+			speed: 3,
+			strength: 3,
+			info: "Strong but easily destructible",
+			img: "data/robot.png",
+			imgd: "data/robotdead.png"
+			}
+			
+} else if (randomElement == enemylist[4]) {
+//The Clone Enemy's stats
+var enemy = {name: player.name + "?",
+			health: player.health,
+			healthcap: player.healthcap,
+			bar: player.bar,
+			speed: player.speed,
+			strength: player.strength,
+			info: "It's you?",
+			img: "data/clone.png",
+			imgd: "data/clonedead.png"
+			}
+}
+
+document.write("<img src='" + enemy.img + "' width='100' height='100' id='eimage'><br><p id='estatinfo'>Name: " + enemy.name + "<br> Health[" +  enemy.bar  + "]<br> HP:" + enemy.health + " SPD:" + enemy.speed + " DMG:" + enemy.strength + "<br> Info: " + enemy.info + "<br> <br></p>");	
+document.write("<p id='battleinfo'>A wild " + enemy.name + " has approached!" + "<br><p>");
+
+//removes the buttons
+function removecontrol() {
+		
+		var button1 = document.getElementById("b1")
+		var button2 = document.getElementById("b2")
+		var button3 = document.getElementById("b3")
+		button1.parentNode.removeChild(button1)
+		button2.parentNode.removeChild(button2)
+		button3.parentNode.removeChild(button3)
+		}
+
+//To update the bar
+function healthbar() {
+		ptemp = player.health/player.healthcap*100
+		
+		if (ptemp <= 0) {
+		player.bar = "<FONT COLOR='#191a19'>▊▊▊▊</FONT><FONT COLOR='#404000'>▊</FONT>"
+		} else if (ptemp <= 25) {
+		player.bar = "<FONT COLOR='#ff0000'>▊</FONT><FONT COLOR='#191a19'>▊▊▊</FONT><FONT COLOR='#404000'>▊</FONT>"
+		} else if (ptemp <= 50) {
+		player.bar = "<FONT COLOR='#ff0000'>▊▊</FONT><FONT COLOR='#191a19'>▊▊</FONT><FONT COLOR='#404000'>▊</FONT>"
+		} else if (ptemp <= 75) {
+		player.bar = "<FONT COLOR='#ff0000'>▊▊▊</FONT><FONT COLOR='#191a19'>▊</FONT><FONT COLOR='#404000'>▊</FONT>"
+		} else if (ptemp <= 99) {
+		player.bar = "<FONT COLOR='#ff0000'>▊▊▊▊</FONT><FONT COLOR='#404000'>▊</FONT>"
+		} else {
+		player.bar = "<FONT COLOR='#ff0000'>▊▊▊▊</FONT><FONT COLOR='#ffe100'>▊</FONT>"
+		}
+		
+		etemp = enemy.health/enemy.healthcap*100
+
+		if (randomElement == enemylist[4]) {
+			if (etemp <= 0) {
+			enemy.bar = "<FONT COLOR='#191a19'>▊▊▊▊</FONT><FONT COLOR='#404000'>▊</FONT>"
+			} else if (etemp <= 25) {
+			enemy.bar = "<FONT COLOR='#ff0000'>▊</FONT><FONT COLOR='#191a19'>▊▊▊</FONT><FONT COLOR='#404000'>▊</FONT>"
+			} else if (etemp <= 50) {
+			enemy.bar = "<FONT COLOR='#ff0000'>▊▊</FONT><FONT COLOR='#191a19'>▊▊</FONT><FONT COLOR='#404000'>▊</FONT>"
+			} else if (etemp <= 75) {
+			enemy.bar = "<FONT COLOR='#ff0000'>▊▊▊</FONT><FONT COLOR='#191a19'>▊</FONT><FONT COLOR='#404000'>▊</FONT>"
+			} else if (etemp <= 99) {
+			enemy.bar = "<FONT COLOR='#ff0000'>▊▊▊▊</FONT><FONT COLOR='#404000'>▊</FONT>"
+			} else {
+			enemy.bar = "<FONT COLOR='#ff0000'>▊▊▊▊</FONT><FONT COLOR='#ffe100'>▊</FONT>"
+			}
+		} else if (etemp <= 0) {
+			enemy.bar = "<FONT COLOR='#191a19'>▊▊▊▊</FONT>"
+			} else if (etemp <= 25) {
+			enemy.bar = "<FONT COLOR='#ff0000'>▊</FONT><FONT COLOR='#191a19'>▊▊▊</FONT>"
+			} else if (etemp <= 50) {
+			enemy.bar = "<FONT COLOR='#ff0000'>▊▊</FONT><FONT COLOR='#191a19'>▊▊</FONT>"
+			} else if (etemp <= 75) {
+			enemy.bar = "<FONT COLOR='#ff0000'>▊▊▊</FONT><FONT COLOR='#191a19'>▊</FONT>"
+			} else {
+			enemy.bar = "<FONT COLOR='#ff0000'>▊▊▊▊</FONT>"
+			} 
+		
+		}
+
+//To update the stats
+function statinfo() {
+		
+		if (enemy.health < 0) { enemy.health = 0 }
+		if (player.health < 0) { player.health = 0 }
+		
+		var act1 = document.getElementById("estatinfo");
+		act1.innerHTML = "Name: " + enemy.name + "<br> Health[" +  enemy.bar  + "]<br> HP:" + enemy.health + " SPD:" + enemy.speed + " DMG:" + enemy.strength + "<br> Info: " + enemy.info + "<br> <br>"
+		var act2 = document.getElementById("pstatinfo")
+		act2.innerHTML = "Name: " + player.name + "<br> Health[" + player.bar + "]<br> HP:" + player.health + " SPD:" + player.speed + " DMG:" + player.strength + "<br> Info: " + player.info
+		
+		}
+
+//Fight if player is faster than enemy
+function fightinfo0() {
+		var act = document.getElementById("battleinfo")
+		act.innerHTML = player.name + " dealt <b>" + player.strength + "</b> damage to " + enemy.name + ".<br>" + enemy.name + " dealt <b>" + enemy.strength + "</b> damage to " + player.name + "."
+		}
+
+//Fight if player is slower than enemy
+function fightinfo1() {
+		var act = document.getElementById("battleinfo")
+		act.innerHTML = enemy.name + " dealt <b>" + enemy.strength + "</b> damage to " + player.name + ".<br>" + player.name + " dealt <b>" + player.strength + "</b> damage to " + enemy.name + "."
+		}
+
+//player uses heal and works
+function healinfo0() {
+		var act = document.getElementById("battleinfo")
+		act.innerHTML = enemy.name + " dealt <b>" + enemy.strength + "</b> damage to " + player.name + ".<br>" + player.name + " healed " + player.healthcap/2 + " HP."
+		}
+
+//player uses heal but fails
+function healinfo1() {
+		var act = document.getElementById("battleinfo")
+		act.innerHTML = enemy.name + " dealt <b>" + enemy.strength + "</b> damage to " + player.name + ".<br>" + player.name + " tried to heal but failed."
+		}
+
+//Win if player was faster
+function win0() {
+		player.level -= 1
+		var act = document.getElementById("battleinfo")
+		act.innerHTML = player.name + " dealt <b>" + player.strength + "</b> damage to " + enemy.name + ".<br><i>" + enemy.name + " got defeated!</i><br>" + player.name + " has " + player.level + " more enemies left! (" + player.level + "/5)"
+		document.getElementById("eimage").src = enemy.imgd;
+		player.health += enemy.strength
+		healthbar()
+		statinfo()
+		removecontrol()
+		}
+		
+//Win if player was slower
+function win1() {
+		healthbar()
+		player.level -= 1
+		var act = document.getElementById("battleinfo")
+		act.innerHTML = enemy.name + " dealt <b>" + enemy.strength + "</b> damage to " + player.name + ".<br>" + player.name + " dealt <b>" + player.strength + "</b> damage to " + enemy.name + ".<br><i>" + enemy.name + " got defeated!</i><br>" + player.name + " has " + player.level + " more enemies left! (" + player.level + "/5)"
+		document.getElementById("eimage").src = enemy.imgd;
+		statinfo()
+		removecontrol()
+		}
+		
+//Lost if player was faster
+function lose0() {
+		enemy.health += player.strength
+		healthbar()
+		var act = document.getElementById("battleinfo")
+		act.innerHTML = player.name + " dealt <b>" + player.strength + "</b> damage to " + enemy.name + ".<br>" + enemy.name + " dealt <b>" + enemy.strength + "</b> damage to " + player.name + ".<br><i>" + player.name + " reached 0 HP and fainted!</i><br><b>GAME OVER</b>"
+		alert("You reached 0 Hit Points and lost!")
+		document.getElementById("pimage").src = "data/playerdead.png";
+		enemyhealth += player.strength
+		healthbar()
+		statinfo()
+		removecontrol()
+		}
+
+//Lost if player was slower
+function lose1() {
+		healthbar()
+		var act = document.getElementById("battleinfo")
+		act.innerHTML = enemy.name + " dealt <b>" + enemy.strength + "</b> damage to " + player.name + ".<br><i>" + player.name + " reached 0 HP and fainted!</i><br><b>GAME OVER</b>"
+		alert("You reached 0 Hit Points and lost!")
+		document.getElementById("pimage").src = "data/playerdead.png";
+		statinfo()
+		removecontrol()
+		}
+
+function fight() {
+
+		enemy.health -= player.strength
+		player.health -= enemy.strength
+		
+		if (player.speed >= enemy.speed) {	
+			if (enemy.health <= 0) { win0() } 
+				else if (player.health <= 0) { lose0() }
+					else {healthbar(), statinfo(), fightinfo0() }
+		} else {
+			if (enemy.health <= 0) { win1() }
+				else if (player.health <= 0) { lose1() }
+					else {healthbar(), statinfo(), fightinfo1() }
+				
+		}
+		}
+
+function heal() {
+		var healchance = Math.random()
+		player.health -= enemy.strength
+		if (healchance < 0.5) {
+			if (player.health <= 0) { lose1() }
+				else {
+				player.health += player.healthcap/2
+				 if (player.health > player.healthcap) {
+					player.health = player.healthcap
+					healthbar()
+					healinfo0()
+					statinfo()
+					} else {
+					healthbar()
+					healinfo0()
+					statinfo()
+					}
+				}
+			} else {
+			if (player.health <= 0) { lose1() } 
+			else {
+			healthbar()
+			healinfo1()
+			statinfo()
+			}
+			}
+		}
+function parry() {
+		var act = document.getElementById("battleinfo");
+		act.innerHTML = "hi3"
+		}
+document.write('<button onclick="fight()" id="b1">Fight</button>' + '<button onclick="heal()" id="b2">Heal</button>' + '<button onclick="parry()" id="b3">Parry</button>')
+document.write('<h2> The Player </h2>')
+document.write("<img src='data/player.png' width='100' height='100' id='pimage'><br><p id='pstatinfo'>Name: " + player.name + "<br> Health[" + player.bar + "] <br> HP:" + player.health + " SPD:" + player.speed + " DMG:" + player.strength + " <br> Info: " + player.info + "</p>");
+</script>
+</body>
+
+</html>

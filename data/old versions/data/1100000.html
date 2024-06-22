@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>RPG Game</title>
+</head>
+<body>
+<body bgcolor="#ff1c20">
+<BODY LINK="#dedddc" VLINK="#dedddc">
+<h2> The Enemy </h2>
+<script>
+
+const img1 = new Image(100, 100);
+const img2 = new Image(100, 100);
+
+img2.src = "playerdead.png";
+
+var enemy = {name: "Rat",
+			health: 6,
+			speed: 2,
+			strength: 2,
+			info: "Just a rat, nothing special"			
+			};
+img1.src = "rat.png";
+ 
+document.body.appendChild(img1);
+document.write("<br> Name: " + enemy.name + "<br> Health[<FONT COLOR='#b50302'>▊</FONT><FONT COLOR='#191a19'>▊▊▊▊</FONT>] <br> HP:" + enemy.health + " SPD:" + enemy.speed + " DMG:" + enemy.strength + "<br>  Info: " + enemy.info + "<br> <br> <br>");	
+document.write(enemy.name + " did a STRONG <b>6 Damage</b> to Player! <br>" + "<b>The Player Died!</b><br>");
+</script>
+<a href=revive.html><br>Try Again?</a>  
+<h2> The Player </h2>
+<script>
+document.body.appendChild(img2);
+</script>
+<p>Name: Player <br> Health[<FONT COLOR='#191a19'>▊▊▊▊▊</FONT>] <br> HP:0 SPD:1 DMG:3 <br> Info: Dead</p>
+</body>
+
+</html>
